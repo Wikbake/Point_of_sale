@@ -7,6 +7,16 @@ import java.sql.DriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * DBConnection class provides communication between database and application. For now it is going to return
+ * mocked values as is in <code>ResultSet</code>. Moreover it is set to cooperate with PostgreSQL by default.
+ * Example id's to enter:
+ *      123
+ *      456
+ *      789
+ *      01234567890123
+ */
+
 public class DBConnection {
 
     private static Connection dbConnection;
@@ -23,6 +33,40 @@ public class DBConnection {
     }
 
     static ResultSet executeQuery(String query) throws SQLException {
+        /*
+        *
+        * You can use this in case of real database.
+        *
         return dbConnection.createStatement().executeQuery(query);
+         */
+
+        ResultSet rs1 = MockResultSet.create(new String[] {"id", "name", "cost"},
+                new Object[][] {
+                        {123L, "Kajzerka", 0.20}
+                });
+        ResultSet rs2 = MockResultSet.create(new String[] {"id", "name", "cost"},
+                new Object[][] {
+                        {456L, "Woda", 2.99}
+                });
+        ResultSet rs3 = MockResultSet.create(new String[] {"id", "name", "cost"},
+                new Object[][] {
+                        {789L, "Lizak", 0.59}
+                });
+        ResultSet rs4 = MockResultSet.create(new String[] {"id", "name", "cost"},
+                new Object[][] {
+                        {1234567890123L, "Mleko", 3.99}
+                });
+        ResultSet emptyRs = MockResultSet.create(new String[] { "col1" }, new Object[][] {});
+
+        if (Double.parseDouble(query) == 123L)
+            return rs1;
+        else if (Double.parseDouble(query) == 456L)
+            return rs2;
+        else if (Double.parseDouble(query) == 789L)
+            return rs3;
+        else if (Double.parseDouble(query) == 1234567890123L)
+            return rs4;
+        else
+            return emptyRs;
     }
 }

@@ -13,14 +13,12 @@ public class DBConnection {
 
     static void getDBConncetion() {
         try {
+
         Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException ex) {
+        dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Point_of_sale", "postgres", "postgres");
+
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Point_of_sale", "postgres", "postgres");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

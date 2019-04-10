@@ -57,7 +57,7 @@ public class Seller_GUI extends JFrame{
                 long idArticle = Long.parseLong(id);//Integer.parseInt(id);
                 articleChecker(idArticle);
             }
-        } catch (InvalidBarCodeException ex) {
+        } catch (InvalidBarCodeException | NumberFormatException ex) {
             System.out.println("Invalid bar-code!");
             JOptionPane.showMessageDialog(pointOfSaleJPanel, "Invalid bar-code", "Error", JOptionPane.ERROR_MESSAGE);
         }

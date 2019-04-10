@@ -9,6 +9,15 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is main class which cooperates with <code>DBConnection</code> and <code>Article</code> classes. For now
+ * it is set to get data from mocked method <code>ResultSet</code> but is also ready to work with real PostgreSQL.
+ * As for input it is necessary to enter codes by hand in the right place while application is running.
+ * <code>PrintReceipt</code> method is responsible for simulation the output.
+ *
+ * @author Bartlomiej Karbownik
+ */
+
 public class Seller_GUI extends JFrame{
     private JPanel pointOfSaleJPanel;
     private JList listArticlesJList;
@@ -23,10 +32,12 @@ public class Seller_GUI extends JFrame{
     public Seller_GUI() {
         DBConnection.getDBConncetion();
         add(pointOfSaleJPanel);
+
         this.setTitle("Point of sale");
         this.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width/2 - 250, Toolkit.getDefaultToolkit().getScreenSize().height/2 - 250, 250, 250);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
+
         scanButton.addActionListener(this::scanActionPerformed);
         exitPrintReceiptButton.addActionListener(this::exitActionPerformed);
     }
@@ -36,13 +47,19 @@ public class Seller_GUI extends JFrame{
     private double totalSum = 0;
     private DecimalFormat df = new DecimalFormat("0.00");
 
+
     private void scanActionPerformed(ActionEvent e) {
         String id = idEnter.getText();
-        if (id.equals(""))
+        try {
+            if (id.equals(""))
+                throw new InvalidBarCodeException();
+            else {
+                long idArticle = Long.parseLong(id);//Integer.parseInt(id);
+                articleChecker(idArticle);
+            }
+        } catch (InvalidBarCodeException ex) {
+            System.out.println("Invalid bar-code!");
             JOptionPane.showMessageDialog(pointOfSaleJPanel, "Invalid bar-code", "Error", JOptionPane.ERROR_MESSAGE);
-        else {
-        int idArticle = Integer.parseInt(id);
-        articleChecker(idArticle);
         }
     }
 
@@ -50,35 +67,44 @@ public class Seller_GUI extends JFrame{
         printReceipt();
         JOptionPane.showMessageDialog(pointOfSaleJPanel, df.format(totalSum)+ " zł", "Amount to pay", JOptionPane.INFORMATION_MESSAGE);
         model.clear();
+        listOfArticles.clear();
         totalSum = 0;
         sumTextArea.setText("0");
     }
 
-    private void articleChecker(int id) {
-        boolean isNotHere = true;
+    private void articleChecker(long id) {
         ResultSet rs = null;
+        long idArticle = 0L;
         try {
+            /*
+            *
+            * You can use this in case of real database. Otherwise you will use mocked data from <code>DBConnection</code>.
+            *
             rs = DBConnection.executeQuery("SELECT * FROM article WHERE id = " + id);
+             */
+            rs = DBConnection.executeQuery(String.valueOf(id));
             while (rs.next()) {
-                int idArticle = rs.getInt("id");
+                idArticle = rs.getLong("id");
                 String nameArticle = rs.getString("name");
                 double costArticle = rs.getDouble("cost");
 
-                if (id == idArticle) {
-                    addToArticleList(idArticle, nameArticle, costArticle);
-                    isNotHere = false;
-                }
+                System.out.println("Product found!");
+                addToArticleList(idArticle, nameArticle, costArticle);
             }
+            if (id != idArticle)
+                throw new ProductNotFoundException();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ProductNotFoundException e) {
+            System.out.println("Product not found!");
+            JOptionPane.showMessageDialog(pointOfSaleJPanel, "Product not found", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if (isNotHere)
-            JOptionPane.showMessageDialog(pointOfSaleJPanel ,"Product not found","Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    private void addToArticleList(int id, String articleName, double cost) {
+    private void addToArticleList(long id, String articleName, double cost) {
         model.addElement(articleName + " " + cost + "zł");
         listArticlesJList.setModel(model);
+        System.out.println("Product added to list!");
         totalSum += cost;
         sumTextArea.setText(df.format(totalSum));
         listOfArticles.add(new Article(id, articleName, cost));

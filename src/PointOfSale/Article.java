@@ -12,7 +12,7 @@ public class Article {
 
     public void setId(int Id) { this.Id = Id; }
     public void setName(String name) { this.name = name; }
-    public void setCost(float cost) { this.cost = cost; }
+    public void setCost(double cost) { this.cost = cost; }
 
     public Article(int Id, String name, double cost) {
         this.Id = Id;

@@ -66,12 +66,12 @@ public class MockResultSetTest {
     @Test
     public void testGetDouble() throws SQLException {
         rs.next();
-        assertEquals(rs.getDouble("cost"), 0.20, 0.00);
+        assertEquals(rs.getDouble("cost"), 0.20, 0.01);
         rs.next();
-        assertEquals(rs.getDouble("cost"), 2.99, 0.00);
+        assertEquals(rs.getDouble("cost"), 2.99, 0.01);
         rs.next();
-        assertEquals(rs.getDouble("cost"), 0.59, 0.00);
+        assertEquals(rs.getDouble("cost"), 0.59, 0.01);
         rs.next();
-        assertEquals(rs.getDouble("cost"), 3.99, 0.00);
+        assertEquals(rs.getDouble("cost"), 3.99, 0.01);
     }
 }

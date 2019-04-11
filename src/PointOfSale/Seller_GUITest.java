@@ -10,7 +10,7 @@ import org.mockito.Mockito;
  * Simple tests of <code>Seller_GUI</code>.
  */
 
-public class Seller_GUITest extends Seller_GUI {
+public class Seller_GUITest{
 
     private Seller_GUI seller = new Seller_GUI();
     private ConsoleOutputCapturer cos = new ConsoleOutputCapturer();
@@ -47,6 +47,6 @@ public class Seller_GUITest extends Seller_GUI {
     @Test
     public void testAddToArticleList() {
         seller.addToArticleList(Mockito.anyLong(), Mockito.anyString(), Mockito.anyDouble());
-        assertEquals(1, listArticlesJList.getComponentCount());
+        assertEquals(1, seller.listArticlesJList.getComponentCount());
     }
 }

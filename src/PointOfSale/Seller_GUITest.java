@@ -4,27 +4,30 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 /**
- * Simple tests of <code>Seller_GUI</code>.
+ * Simple tests for <code>Seller_GUI</code>.
  */
 
 public class Seller_GUITest{
 
     private Seller_GUI seller = new Seller_GUI();
     private ConsoleOutputCapturer cos = new ConsoleOutputCapturer();
-    long wrongId = 1010101055656L;
-    long rightId = 1234567890123L;
+    private ResultSet rs;
+    private long wrongId = 1010101055656L;
+    private long rightId = 1234567890123L;
 
-    /*
     @Before
-    public void setUp() {
-        listOfArticles.add(new Article(123L, "Some", 0.12));
-        listOfArticles.add(new Article(456L, "Thing", 3.45));
-        listOfArticles.add(new Article(789L, "Here", 6.78));
+    public void setUp() throws SQLException {
+        seller.listOfArticles.add(new Article(123L, "Some", 0.12));
+        seller.listOfArticles.add(new Article(456L, "Thing", 3.45));
+        seller.listOfArticles.add(new Article(789L, "Here", 6.78));
     }
-    */
+
 
     @Test
     public void testProductNotFound() {
@@ -45,8 +48,29 @@ public class Seller_GUITest{
     }
 
     @Test
-    public void testAddToArticleList() {
-        seller.addToArticleList(Mockito.anyLong(), Mockito.anyString(), Mockito.anyDouble());
+    public void testCheckerFoundId() {
+        seller.articleChecker(rightId);
         assertEquals(1, seller.listArticlesJList.getComponentCount());
+    }
+
+    @Test
+    public void testAddToArticleList() {
+        seller.addToArticleList(123L, "Some", 0.12);
+        assertEquals(1, seller.listArticlesJList.getComponentCount());
+    }
+
+    @Test
+    public void testExit() {
+        assertEquals(3, seller.listOfArticles.size());
+        seller.exitActionPerformed(null);
+        assertEquals(0, seller.listOfArticles.size());
+    }
+
+    @Test
+    public void testTotalSum() {
+        assertEquals(0, seller.totalSum, 0.00);
+        seller.addToArticleList(123L, "Some", 0.12);
+        seller.addToArticleList(456L, "Thing", 3.45);
+        assertEquals(3.57, seller.totalSum, 0.01);
     }
 }

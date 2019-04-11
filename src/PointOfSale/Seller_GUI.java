@@ -14,14 +14,18 @@ import java.util.List;
  * it is set to get data from mocked method <code>ResultSet</code> but is also ready to work with real PostgreSQL.
  * As for input it is necessary to enter codes by hand in the right place while application is running.
  * <code>PrintReceipt</code> method is responsible for simulation the output.
+ * Some access specifiers are package-private or protected instead of private because of test class!
+ *
+ * IMPORTANT!
+ * If database is not connected even though excepton will be thrown the application will work correctly.
  *
  * @author Bartlomiej Karbownik
  */
 
 public class Seller_GUI extends JFrame{
     private JPanel pointOfSaleJPanel;
-    private JList listArticlesJList;
-    public JTextField idEnter;
+    protected JList listArticlesJList;
+    protected JTextField idEnter;
     private JButton scanButton;
     private JButton exitPrintReceiptButton;
     private JTextArea sumTextArea;
@@ -48,13 +52,13 @@ public class Seller_GUI extends JFrame{
     private DecimalFormat df = new DecimalFormat("0.00");
 
 
-    private void scanActionPerformed(ActionEvent e) {
+    void scanActionPerformed(ActionEvent e) {
         String id = idEnter.getText();
         try {
             if (id.equals(""))
                 throw new InvalidBarCodeException();
             else {
-                long idArticle = Long.parseLong(id);//Integer.parseInt(id);
+                long idArticle = Long.parseLong(id);
                 articleChecker(idArticle);
             }
         } catch (InvalidBarCodeException | NumberFormatException ex) {
@@ -101,7 +105,7 @@ public class Seller_GUI extends JFrame{
         }
     }
 
-    private void addToArticleList(long id, String articleName, double cost) {
+    void addToArticleList(long id, String articleName, double cost) {
         model.addElement(articleName + " " + cost + "zł");
         listArticlesJList.setModel(model);
         System.out.println("Product added to list!");
@@ -110,7 +114,7 @@ public class Seller_GUI extends JFrame{
         listOfArticles.add(new Article(id, articleName, cost));
     }
 
-    private void printReceipt() {
+    protected void printReceipt() {
         System.out.println("RECEIPT: ");
         for (Article a : listOfArticles)
             System.out.println(a.getName() + " " + a.getCost());

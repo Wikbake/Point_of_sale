@@ -19,6 +19,12 @@ import java.util.List;
  * IMPORTANT!
  * If database is not connected even though excepton will be thrown the application will work correctly.
  *
+ * EXAMPLE BAR-CODES:
+ *      123
+ *      456
+ *      789
+ *      01234567890123
+ *
  * @author Bartlomiej Karbownik
  */
 

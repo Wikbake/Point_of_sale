@@ -46,9 +46,9 @@ public class Seller_GUI extends JFrame{
         exitPrintReceiptButton.addActionListener(this::exitActionPerformed);
     }
 
-    private List<Article> listOfArticles = new ArrayList<Article>();
+    protected List<Article> listOfArticles = new ArrayList<Article>();
     private DefaultListModel model = new DefaultListModel();
-    private double totalSum = 0;
+    protected double totalSum = 0;
     private DecimalFormat df = new DecimalFormat("0.00");
 
 
@@ -67,7 +67,7 @@ public class Seller_GUI extends JFrame{
         }
     }
 
-    private void exitActionPerformed(ActionEvent e) {
+    void exitActionPerformed(ActionEvent e) {
         printReceipt();
         JOptionPane.showMessageDialog(pointOfSaleJPanel, df.format(totalSum)+ " zł", "Amount to pay", JOptionPane.INFORMATION_MESSAGE);
         model.clear();
@@ -76,7 +76,7 @@ public class Seller_GUI extends JFrame{
         sumTextArea.setText("0");
     }
 
-    private void articleChecker(long id) {
+    void articleChecker(long id) {
         ResultSet rs = null;
         long idArticle = 0L;
         try {

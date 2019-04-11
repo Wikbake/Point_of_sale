@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d93364a-c699-4c45-b9ce-34d0975c222a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/PointOfSale/Seller_GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointOfSale/Seller_GUI.java" afterDir="false" />
-    </list>
+    <list default="true" id="0d93364a-c699-4c45-b9ce-34d0975c222a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +17,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PointOfSale/Seller_GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="136">
+              <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#1914#1923#0" expanded="true" />
                 <element signature="e#4827#4828#0" expanded="true" />
                 <element signature="e#4876#4877#0" expanded="true" />
@@ -74,8 +71,8 @@
         <option value="$PROJECT_DIR$/src/PointOfSale/DBConnection.java" />
         <option value="$PROJECT_DIR$/src/PointOfSale/MockResultSetTest.java" />
         <option value="$PROJECT_DIR$/src/PointOfSale/Seller_GUITest.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/PointOfSale/Seller_GUI.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -314,9 +311,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19818456" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19818456" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -531,13 +527,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/awt/Container.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -559,6 +548,9 @@
     <entry file="file://$PROJECT_DIR$/src/PointOfSale/Seller_GUI.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PointOfSale/Seller_GUITest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -571,10 +563,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PointOfSale/Seller_GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="136">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#1914#1923#0" expanded="true" />
             <element signature="e#4827#4828#0" expanded="true" />
             <element signature="e#4876#4877#0" expanded="true" />

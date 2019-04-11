@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *      456
  *      789
  *      01234567890123
+ * With them even though excepton will be thrown the application will work correctly.
  */
 
 public class DBConnection {

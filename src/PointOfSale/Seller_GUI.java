@@ -15,20 +15,20 @@ import java.util.List;
  * As for input it is necessary to enter codes by hand in the right place while application is running.
  * <code>PrintReceipt</code> method is responsible for simulation the output.
  * Some access specifiers are package-private or protected instead of private because of test class!
- *
+ * <p>
  * IMPORTANT!
- * If database is not connected even though excepton will be thrown the application will work correctly.
- *
+ * If database is not connected even though exception will be thrown the application will work correctly.
+ * <p>
  * EXAMPLE BAR-CODES:
- *      123
- *      456
- *      789
- *      01234567890123
+ * 123
+ * 456
+ * 789
+ * 01234567890123
  *
  * @author Bartlomiej Karbownik
  */
 
-public class Seller_GUI extends JFrame{
+public class Seller_GUI extends JFrame {
     private JPanel pointOfSaleJPanel;
     protected JList listArticlesJList;
     protected JTextField idEnter;
@@ -44,7 +44,7 @@ public class Seller_GUI extends JFrame{
         add(pointOfSaleJPanel);
 
         this.setTitle("Point of sale");
-        this.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width/2 - 250, Toolkit.getDefaultToolkit().getScreenSize().height/2 - 250, 250, 250);
+        this.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 250, Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 250, 250, 250);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
 
@@ -75,7 +75,7 @@ public class Seller_GUI extends JFrame{
 
     void exitActionPerformed(ActionEvent e) {
         printReceipt();
-        JOptionPane.showMessageDialog(pointOfSaleJPanel, df.format(totalSum)+ " zł", "Amount to pay", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(pointOfSaleJPanel, df.format(totalSum) + " zł", "Amount to pay", JOptionPane.INFORMATION_MESSAGE);
         model.clear();
         listOfArticles.clear();
         totalSum = 0;
@@ -124,10 +124,11 @@ public class Seller_GUI extends JFrame{
         System.out.println("RECEIPT: ");
         for (Article a : listOfArticles)
             System.out.println(a.getName() + " " + a.getCost());
-        System.out.println("Total cost: " + df.format(totalSum)+ " zł");
+        System.out.println("Total cost: " + df.format(totalSum) + " zł");
     }
 
     public static void main(String[] args) {
         new Seller_GUI().setVisible(true);
     }
+
 }
